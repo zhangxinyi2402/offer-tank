@@ -1,0 +1,106 @@
+/* Unified tactical world. Visual-only overrides, no changes to stage transitions. */
+#view-cover .cover-tank-silhouette{opacity:.535}
+/* Industrial danger modules. Only the currently pending item pulses. */
+#view-driver .diagnostic{border:1px solid #976e6552;border-top:3px solid #9e6c626b;border-radius:0;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));padding-left:13px;background:repeating-linear-gradient(135deg,#98746935 0px,#98746935 4px,transparent 4px,transparent 9px) top/100% 4px no-repeat,linear-gradient(125deg,#28373fd9,#14232de8);box-shadow:inset 0 0 0 3px #07151e44,inset 0 -2px #8a696442}
+#view-driver .diagnostic:before{content:'⚠';inset:auto;left:auto;right:8px;top:10px;width:auto;height:auto;background:none;box-shadow:none;color:inherit;font-size:16px;opacity:.55}
+#view-driver .diagnostic strong{letter-spacing:1px}#view-driver .diagnostic small{letter-spacing:1px}
+#view-driver .diagnostic.pending{color:#ffd0bd;border-color:#e37557;border-top-color:#fb9b76;background:repeating-linear-gradient(135deg,#e9896566 0px,#e9896566 5px,transparent 5px,transparent 10px) top/100% 5px no-repeat,linear-gradient(135deg,#6a3027ef,#351d22eb);animation:danger-module 1.35s ease-in-out infinite;box-shadow:inset 0 0 0 3px #160e1766,inset 0 0 25px #db62462b}
+#view-driver .diagnostic.pending:before{opacity:1;color:#ffb097;background:none;box-shadow:none}
+#view-driver .diagnostic.inspecting{color:#f0d395;border-color:#d4af72;border-top-color:#e1c48d;background:repeating-linear-gradient(135deg,#e3c18b66 0px,#e3c18b66 4px,transparent 4px,transparent 9px) top/100% 4px no-repeat,linear-gradient(130deg,#5d5138ee,#2e3336ef);box-shadow:inset 0 0 0 3px #1d252a66,inset 0 0 23px #b6a46a12}
+#view-driver .diagnostic.inspecting:before{content:'⌕';background:none;box-shadow:none;color:#e1c48d;opacity:1}
+#view-driver .diagnostic.complete{color:#b3c1bb;border-color:#8c9e8e77;border-top-color:#9daf9b;background:repeating-linear-gradient(135deg,#9da98d30 0px,#9da98d30 4px,transparent 4px,transparent 9px) top/100% 4px no-repeat,linear-gradient(125deg,#31413fe6,#172a32);box-shadow:inset 0 0 0 3px #11202a55}
+#view-driver .diagnostic.complete:before{content:'✓';background:none;box-shadow:none;color:#aabca8;opacity:.8}
+#view-driver .diagnostic.sweeping:after{background:linear-gradient(125deg,transparent 43%,#ffe9bba8 50%,transparent 57%)}
+/* A true circular optical aperture. Diameter never derives from separate width/height scales. */
+#view-scout .lens-housing{width:min(84%,calc(100dvh - 200px));height:auto;aspect-ratio:1;top:5%;left:50%;transform:translateX(-50%);border-radius:50%}
+#view-scout .scope-lens{border-radius:50%;aspect-ratio:1;height:100%;width:100%}
+#view-scout .scout-target{left:10%;top:30%;width:80%;aspect-ratio:2/1}
+#view-scout .lens-vignette{border-radius:50%;background:radial-gradient(circle,transparent 40%,#0e202529 72%,#040e17b3 100%)}
+#view-scout .bezel-label{bottom:5px}.app[data-view=scout] .panel-layer:has(.panel[data-mode=verify]){z-index:51}
+/* Photographic/raster panorama and single-shot artillery effects. */
+#view-fire{background:#243541;isolation:isolate}
+#view-fire .panorama{overflow:hidden;isolation:isolate;background:#3c4c57}
+#view-fire .fire-landscape{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;filter:saturate(.46) brightness(.73) contrast(.95);z-index:0}
+#view-fire .panorama:after{content:'';position:absolute;inset:0;pointer-events:none;z-index:4;background:linear-gradient(90deg,#162b3a35,transparent 25%,transparent 80%,#172b3b33),linear-gradient(0deg,#10263459,transparent 40%,#24415413)}
+#view-fire .fire-tank{position:absolute;left:8%;bottom:8%;width:min(62%,calc((100dvh - 235px) * 1.6));aspect-ratio:2/1;z-index:3}
+#view-fire #fire-tank-image{display:block;width:100%;height:100%;object-fit:contain;filter:saturate(.64) brightness(.97) drop-shadow(0 9px 5px #091a2370)}
+#view-fire .fire-tower{position:absolute;right:6%;bottom:20%;width:min(17%,calc((100dvh - 230px) * .32));aspect-ratio:1145/1374;z-index:2}
+#view-fire #fire-tower-image{display:block;width:100%;height:100%;object-fit:contain;filter:saturate(.65) brightness(.88) drop-shadow(0 4px 5px #102a3d55)}
+#view-fire .fire-observer{position:absolute;left:43%;top:-21%;width:35%;height:auto;filter:saturate(.6) brightness(.8);pointer-events:none}
+#view-fire .fire-ground-shadow{position:absolute;bottom:5%;left:9%;width:58%;height:10%;background:radial-gradient(ellipse,#0b1c2655,transparent 70%);filter:blur(7px);z-index:1;pointer-events:none}
+#view-fire .fire-air{position:absolute;pointer-events:none;z-index:4;filter:blur(12px);opacity:.5}
+#view-fire .far-air{left:0;right:0;top:42%;height:15%;background:linear-gradient(90deg,transparent,#c0c4b526,#a6b7bd22,transparent)}
+#view-fire .near-air{left:10%;right:0;bottom:11%;height:12%;background:radial-gradient(ellipse at 70% 50%,#c2b9a929,transparent 70%)}
+#view-fire .fire-effects{position:absolute;inset:0;width:100%;height:100%;z-index:7;pointer-events:none;overflow:visible}
+#view-fire .panorama-title{z-index:9;font:9px 'Microsoft YaHei',sans-serif;letter-spacing:1px;color:#c5d2d5;background:#11273470;padding:6px 8px;border-left:2px solid #a1b8bf60}
+#view-fire .target-name{z-index:9;right:5%;top:8%;font:9px/1.9 'Microsoft YaHei',sans-serif;color:#b9cbd2;text-shadow:0 1px 4px #152733}.target-name strong{letter-spacing:1px}
+#view-fire .fire-readiness{position:absolute;left:26px;bottom:20px;z-index:8;font-size:10px;color:#aabcbf;letter-spacing:1px;background:#132b3870;padding:7px 10px;border:1px solid #91a6aa33}
+#view-fire .fire-readiness>span{font-size:7px;color:#bebd91;margin-right:8px}
+#view-fire .fire-console{background:linear-gradient(#2f414b,#162b38);border-top:1px solid #97aab566;box-shadow:0 -5px 22px #0b1a2655;z-index:10}
+#view-fire .fire-console>div{margin-right:auto}
+#view-fire .fire-console p{font-size:11px;color:#9eb5c2}
+#view-fire .fire-console small{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:1px;color:#beccce}
+#view-fire .fire-console #fire{font:700 13px 'Microsoft YaHei',sans-serif;letter-spacing:2px;min-width:205px;min-height:48px;background:linear-gradient(130deg,#75694c70,#33444b);border-color:#d5bc8390}
+#view-fire #show-victory{display:none;font:11px 'Microsoft YaHei',sans-serif;margin-left:15px}
+.app[data-fire=complete] #view-fire #show-victory{display:block}.app[data-fire=complete] #view-fire #fire{display:none}
+.app[data-fire=muzzle] #fire-muzzle{opacity:1;animation:artillery-flash .25s ease-out 1 both}
+.app[data-fire=muzzle] #fire-muzzle-dust,.app[data-fire=flight] #fire-muzzle-dust{opacity:.55;animation:muzzle-pressure .7s ease-out 1 both;transform-box:fill-box;transform-origin:left center}
+.app[data-fire=calibrating] #fire-tank-image{animation:artillery-settle .65s ease-out 1 both;transform-origin:50% 80%}
+.app[data-fire=muzzle] #fire-tank-image{animation:artillery-recoil .3s ease-out 1 both}
+.app[data-fire=muzzle] #fire-trajectory,.app[data-fire=flight] #fire-trajectory{opacity:.6}
+.app[data-fire=impact] #fire-impact,.app[data-fire=impact] #fire-ground-dust{opacity:1}
+.app[data-fire=impact] .impact-core{animation:detonation-core .8s ease-out 1 both;transform-box:fill-box;transform-origin:center}
+.app[data-fire=impact] .impact-ring{animation:detonation-ring .55s ease-out 1 both;transform-box:fill-box;transform-origin:center}
+.app[data-fire=impact] .impact-sparks{animation:detonation-sparks .7s ease-out 1 both;transform-box:fill-box;transform-origin:center}
+.app[data-fire=impact] .impact-smoke{animation:detonation-cloud 1.45s ease-out 1 both;transform-box:fill-box;transform-origin:50% 80%}
+.app[data-fire=impact] #fire-ground-dust{animation:ground-pressure 1.45s ease-out 1 both;transform-box:fill-box;transform-origin:center}
+.app[data-fire=impact] #fire-tower-image{animation:tower-shock .36s ease-out 1 both;transform-origin:50% 100%}
+.impact-screen-flash{position:absolute;inset:0;pointer-events:none;z-index:8;background:#f4dbac;opacity:0}
+.app[data-fire=impact] .impact-screen-flash{animation:screen-impact .23s ease-out 1 both}
+/* Reward card remains centered and manually dismissible; the battlefield stays visible. */
+#view-fire #victory{position:absolute;left:50%;top:44%;right:auto;bottom:auto;inset-inline-end:auto;width:min(530px,76%);height:auto;transform:translate(-50%,-50%);padding:29px 35px 27px;display:flex;flex-direction:column;align-items:center;z-index:20;background:radial-gradient(ellipse at 50% 0,#a58a3d24,transparent 70%),linear-gradient(140deg,#30414ef5,#132a39f8);border:1px solid #c1a771b0;border-top:2px solid #e0c58b;border-radius:3px;box-shadow:0 23px 85px #000a,0 0 45px #b79c4520,inset 0 0 0 5px #a28d5010;backdrop-filter:blur(10px);overflow:hidden;animation:reward-confirm .4s ease-out 1 both}
+#view-fire #victory[data-dismissed=true]{display:none!important}
+#view-fire #victory .close{right:11px;top:10px;color:#c8bc98;z-index:3}
+#view-fire .victory-rays{position:absolute;left:50%;top:25px;width:200px;height:200px;transform:translateX(-50%);background:repeating-conic-gradient(#d7bd6b12 0deg 1deg,transparent 1deg 15deg);border-radius:50%;mask-image:radial-gradient(circle,#000,transparent 70%);pointer-events:none}
+#view-fire .victory-seal{position:relative;width:78px;height:78px;font-size:44px;margin-bottom:22px;border-color:#d3b97b;background:radial-gradient(circle,#b1974933,transparent 75%);box-shadow:inset 0 0 17px #a68a3b21;outline:1px solid #b79e5b44;outline-offset:7px}
+#view-fire #victory>small{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:3px;color:#c9b88e}
+#view-fire #victory h2{font:700 clamp(23px,3vw,39px) Consolas,monospace;letter-spacing:1px;color:#eddaa7;text-shadow:0 0 20px #e9c55f22;margin:14px 0 11px}
+#view-fire #victory p{font-size:11px;color:#a5bfcc;margin:0 0 14px}
+#view-fire .victory-stamp{font-size:9px;letter-spacing:4px;padding:4px 10px;border:1px solid #b9a26a55;color:#c9ba91;transform:rotate(-4deg);margin-bottom:22px}
+#view-fire #victory .primary{width:100%;font:600 12px 'Microsoft YaHei',sans-serif;letter-spacing:1px;border-color:#c9b67b75;background:linear-gradient(120deg,#8c793c2b,#35485355);z-index:2}
+#view-fire #victory .primary span{font-size:10px;margin-top:7px}
+/* Quiet blue/gold debriefing room, linked visually to the cover battlefield. */
+#view-review{isolation:isolate;background:#10283a;gap:13px}
+#view-review .review-world{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+#view-review .review-landscape{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.3) brightness(.46)}
+#view-review .review-tank{position:absolute;left:-15%;bottom:6%;width:85%;height:auto;opacity:.27;filter:saturate(.2) brightness(.7)}
+#view-review .review-world>div{position:absolute;inset:0;background:linear-gradient(90deg,#10273850,#0c2234bd 50%,#102637e8),linear-gradient(0deg,#0b2339c2,transparent 70%)}
+#view-review .review-instrument{position:absolute;inset:4% 5%;z-index:-1;border:1px solid #c3ae6325;pointer-events:none;background:linear-gradient(90deg,#d5bb6c4d,#d5bb6c00) left top/90px 1px no-repeat,linear-gradient(#d5bb6c4d,#d5bb6c00) left top/1px 70px no-repeat}
+#view-review .review-header small{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:3px;color:#d4bf85}
+#view-review .review-header h2{color:#eee1b7;font-size:29px;letter-spacing:6px;margin-top:10px;font-weight:500}
+#view-review .evidence-loop{width:370px;height:264px;border:2px solid #b9a76485;border-radius:50%;margin:25px 0 18px;background:radial-gradient(ellipse at 50% 50%,#23465d55,#102a3d44 55%,#b0a26409);box-shadow:0 7px 0 #081b2a99,0 9px 0 1px #b09b5240,0 0 0 8px #98a99b0a,inset 0 0 0 8px #a5ad9510,inset 0 0 30px #c0aa5520;transform:perspective(900px) rotateX(9deg)}
+#view-review .evidence-loop:before{content:'';position:absolute;inset:12% 10%;border:1px dashed #c7b9774d;border-radius:50%;box-shadow:none}
+#view-review .evidence-loop:after{content:'↻';font-size:27px;color:#d5be77;top:16%;left:47%}
+#view-review .evidence-loop>strong{color:#e1cf94;font:600 17px/1.7 'Microsoft YaHei',sans-serif;letter-spacing:4px;text-shadow:0 2px 7px #0009;top:44%;inset-inline:0}
+#view-review .evidence-loop>span{min-width:76px;padding:9px 14px;border:1px solid #c0ad6c8c;border-top-color:#e2d097b0;border-radius:3px;background:linear-gradient(140deg,#354d57,#132e44);color:#e0d5af;font-size:12px;box-shadow:0 5px 0 #071b2c,0 6px 0 1px #86753e66,0 10px 15px #06111d77,inset 0 1px #ebdda627}
+#view-review .evidence-loop>span:nth-of-type(2){color:#f1df9f;border-color:#d6be75;background:linear-gradient(140deg,#6c6341,#244354);box-shadow:0 5px 0 #102536,0 6px 0 1px #ba9d4b88,0 0 24px #d4b7512b}
+#view-review .loop-next{font-size:11px;color:#c8b77c;letter-spacing:.6px;margin:6px 0}
+#view-review h3{font-size:25px;color:#e9e1c4;line-height:1.7;text-shadow:0 2px 9px #071829;margin:4px 0}
+#view-review .review-note{font-size:12px;color:#a8bdc9;letter-spacing:1px}
+@keyframes danger-module{50%{border-color:#ffb095;box-shadow:inset 0 0 0 3px #280e1866,inset 0 0 30px #df613c45,0 0 14px #ca5a3c3d;color:#ffe1d0}}
+@keyframes artillery-flash{0%{opacity:0;scale:.65}20%{opacity:1;scale:1}100%{opacity:0;scale:1.2}}
+@keyframes muzzle-pressure{from{opacity:.6;scale:.6}to{opacity:0;scale:1.6;translate:25px -12px}}
+@keyframes artillery-settle{50%{rotate:-.3deg;translate:0 -1px}}
+@keyframes artillery-recoil{0%,100%{translate:0 0}25%{translate:-8px 2px;rotate:-.15deg}}
+@keyframes detonation-core{from{scale:.25;opacity:1}25%{scale:1;opacity:1}to{scale:1.25;opacity:0}}
+@keyframes detonation-ring{from{scale:.2;opacity:.7}to{scale:3.3;opacity:0}}
+@keyframes detonation-sparks{from{scale:.25;opacity:1}to{scale:1.6;opacity:0}}
+@keyframes detonation-cloud{from{opacity:0;scale:.4}25%{opacity:.9;scale:.85}to{opacity:.2;scale:1.6;translate:-12px -25px}}
+@keyframes ground-pressure{from{opacity:.8;scale:.3}to{opacity:0;scale:1.8}}
+@keyframes tower-shock{25%{rotate:.7deg;translate:2px 0}60%{rotate:-.3deg;translate:-1px 0}to{rotate:0deg;translate:0 0}}
+@keyframes screen-impact{15%{opacity:.17}to{opacity:0}}
+@keyframes reward-confirm{from{opacity:0;scale:.95}to{opacity:1;scale:1}}
+@media(max-height:820px){#view-scout .lens-housing{width:min(84%,calc(100dvh - 200px));height:auto;top:5%;aspect-ratio:1}#view-scout .scout-target{top:30%}#view-review{gap:9px}#view-review .evidence-loop{width:310px;height:216px;margin:17px 0 15px}#view-review .evidence-loop>span{font-size:10px;min-width:64px;padding:7px 11px}#view-review .review-header h2{font-size:25px}#view-review h3{font-size:22px}#view-review .loop-next{font-size:10px}#view-fire #victory{padding:23px 29px;width:480px}#view-fire .victory-seal{width:66px;height:66px;font-size:39px;margin-bottom:19px}#view-fire #victory h2{font-size:33px;margin:12px 0 10px}#view-fire .victory-stamp{margin-bottom:18px}}
+@media(max-width:1100px){#view-scout .lens-housing{width:min(90%,calc(100dvh - 200px));height:auto;aspect-ratio:1}#view-fire .fire-console{padding:12px 17px}#view-fire .fire-console #fire{min-width:175px;font-size:11px}#view-fire .fire-console small{font-size:8px}#view-driver .diagnostic:before{font-size:14px;right:6px;top:8px}#view-driver .diagnostic strong{letter-spacing:.5px}}
+@media(max-width:700px){#view-scout .lens-housing{width:115%;height:auto;aspect-ratio:1;top:10%}#view-scout .scout-target{left:10%;top:30%;width:80%}#view-fire .fire-tank{left:3%;width:72%;bottom:17%}#view-fire .fire-tower{right:3%;width:21%;bottom:31%}#view-fire .fire-console{padding:10px;gap:6px}#view-fire .fire-console>div{max-width:51%}#view-fire .fire-console p{font-size:9px}#view-fire .fire-console #fire{min-width:0;font-size:10px;letter-spacing:.5px;padding:10px}#view-fire .fire-console small{font-size:7px}#view-fire #victory{width:92%;padding:23px 17px}#view-fire #victory h2{font-size:25px}#view-fire .fire-readiness{font-size:8px;left:12px;bottom:12px;letter-spacing:0}#view-review .evidence-loop{width:220px;height:172px}#view-review .evidence-loop>span{font-size:9px;min-width:53px;padding:5px 7px}#view-review .evidence-loop>strong{font-size:13px}#view-review h3{font-size:17px}#view-review .loop-next{font-size:8px}#view-review .review-header h2{font-size:23px}#view-review .review-note{font-size:10px}#view-driver .diagnostic:before{font-size:10px;right:5px;top:7px}#view-driver .diagnostic strong{letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){#view-driver .diagnostic.pending,.app[data-fire] #fire-tank-image,.app[data-fire] #fire-tower-image,.app[data-fire] #fire-muzzle,.app[data-fire] #fire-muzzle-dust,.app[data-fire] .impact-core,.app[data-fire] .impact-ring,.app[data-fire] .impact-sparks,.app[data-fire] .impact-smoke,.app[data-fire] #fire-ground-dust,.app[data-fire] .impact-screen-flash,#view-fire #victory{animation:none!important}.app[data-fire=impact] .impact-screen-flash{opacity:0}}

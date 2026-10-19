@@ -1,0 +1,26 @@
+/* Cover-only artwork and typography; the mission runtime and all other scenes are untouched. */
+#view-cover{background:#1b2933;isolation:isolate}
+#view-cover .cover-atmosphere{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+#view-cover .cover-landscape{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% center;filter:saturate(.45) brightness(.78) contrast(.94)}
+#view-cover .cover-tank-silhouette{position:absolute;width:83%;height:auto;right:-12%;bottom:9%;opacity:.445;filter:saturate(.24) brightness(.65) contrast(.95);transform:rotate(-1deg)}
+#view-cover .cover-veil{position:absolute;inset:0;background:linear-gradient(90deg,#12212af7 0%,#172630e8 30%,#18293491 63%,#18273261 100%),linear-gradient(0deg,#12222cdd 0%,transparent 38%,#1727321a 65%,#12212a4d 100%)}
+#view-cover .cover-grain{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,#091c250c 4px);opacity:.7}
+#view-cover .cover-copy{position:absolute;left:7%;top:50%;transform:translateY(-50%);width:53%;max-width:750px;z-index:2}
+#view-cover .cover-kicker{display:flex;align-items:center;gap:11px;font-size:9px;letter-spacing:2px;color:#a6b9c2}
+#view-cover .cover-kicker>span{width:24px;height:1px;background:#87999c77}
+#view-cover h2{margin:27px 0 0;font-size:clamp(43px,4.6vw,84px);font-weight:650;line-height:1.18;letter-spacing:.09em;color:#f0f0e8;text-shadow:0 3px 24px #09172055}
+#view-cover h2>span{display:block;margin-top:14px;font-size:clamp(20px,2.1vw,36px);font-weight:300;line-height:1.1;letter-spacing:.27em;color:#a4bcc7}
+#view-cover .cover-rule{width:47px;height:2px;background:#ccb789;opacity:.65;margin:33px 0 24px}
+#view-cover .cover-thesis{font-size:clamp(22px,2.05vw,35px);font-weight:400;line-height:1.65;letter-spacing:.045em;margin:0;color:#d5dce0}
+#view-cover .cover-thesis em{font-style:normal;color:#e9d4a8}
+#view-cover .cover-description{margin:23px 0 0;font-size:12px;line-height:1.9;letter-spacing:.035em;color:#9bafb9;max-width:490px}
+#view-cover .cover-launch{position:absolute;z-index:3;right:10%;top:50%;transform:translateY(-50%);width:clamp(240px,22vw,330px);min-height:139px;text-align:left;padding:22px 24px;border:1px solid #c7b28191;border-left:3px solid #d3bf91;background:linear-gradient(125deg,#4b5046ba,#25343ee6 78%);box-shadow:0 16px 50px #08151b55,inset 0 1px #e4d4aa14;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:background .2s,border-color .2s,box-shadow .2s}
+#view-cover .cover-launch:hover{background:linear-gradient(125deg,#676347c9,#334651ed 85%);border-color:#e7ce97;box-shadow:0 16px 50px #08151b77,inset 0 0 30px #d7bf7c0d}
+#view-cover .launch-kicker{display:block;font:8px Consolas,monospace;letter-spacing:1.3px;color:#c3bc9d}
+#view-cover .cover-launch strong{display:block;margin-top:15px;font:700 clamp(15px,1.35vw,22px) Consolas,monospace;letter-spacing:1.1px;color:#eee2c7}
+#view-cover .launch-arrow{position:absolute;right:22px;top:47px;font:24px 'Segoe UI',sans-serif;color:#dcc592}
+#view-cover .launch-description{display:block;margin-top:11px;font-size:11px;letter-spacing:.1em;color:#adbdc0}
+#view-cover .cover-bottom-line{position:absolute;left:7%;right:6.5%;bottom:6%;display:flex;gap:27px;border-top:1px solid #a3b1b32b;padding-top:13px;font:8px Consolas,monospace;letter-spacing:1.2px;color:#92a6af90;pointer-events:none}
+@media(max-height:820px){#view-cover .cover-copy{width:54%}#view-cover h2{font-size:52px;margin-top:23px}#view-cover h2>span{font-size:24px;margin-top:11px}#view-cover .cover-rule{margin:25px 0 19px}#view-cover .cover-thesis{font-size:24px;line-height:1.65}#view-cover .cover-description{font-size:11px;margin-top:20px}#view-cover .cover-launch{width:245px;min-height:132px;padding:20px}#view-cover .cover-launch strong{font-size:16px}#view-cover .launch-arrow{font-size:22px;right:19px;top:43px}}
+@media(max-width:1100px){#view-cover .cover-copy{left:6%;width:53%}#view-cover h2{font-size:42px}#view-cover h2>span{font-size:21px}#view-cover .cover-thesis{font-size:21px}#view-cover .cover-launch{right:7%;width:218px;padding:17px}#view-cover .cover-launch strong{font-size:14px}#view-cover .launch-arrow{right:15px;top:40px;font-size:20px}#view-cover .launch-description{font-size:10px}#view-cover .cover-bottom-line{gap:18px;font-size:7px}#view-cover .cover-description{font-size:10px}}
+@media(max-width:700px){#view-cover .cover-copy{left:8%;top:8%;width:84%;transform:none}#view-cover h2{font-size:33px;margin-top:19px}#view-cover h2>span{font-size:17px}#view-cover .cover-kicker{font-size:7px;letter-spacing:1px}#view-cover .cover-rule{margin:20px 0 15px}#view-cover .cover-thesis{font-size:18px}#view-cover .cover-description{font-size:9px;line-height:1.8;margin-top:15px}#view-cover .cover-launch{right:8%;top:auto;bottom:10%;transform:none;width:84%;min-height:110px;padding:16px 18px}#view-cover .cover-launch strong{margin-top:10px;font-size:15px}#view-cover .launch-description{margin-top:8px;font-size:10px}#view-cover .launch-arrow{top:36px;right:20px}#view-cover .cover-bottom-line{display:none}#view-cover .cover-tank-silhouette{width:140%;right:-45%;bottom:18%;opacity:.3}}

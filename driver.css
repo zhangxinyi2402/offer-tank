@@ -1,0 +1,76 @@
+/* Finished cockpit skin. Every module still uses the existing sequential state classes. */
+#view-driver{background:#18242c;isolation:isolate}
+#view-driver .cockpit-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none}
+#view-driver .cockpit-tone{position:absolute;inset:0;background:linear-gradient(0deg,#0c1b2861,transparent 70%),linear-gradient(90deg,#10202b0d,#18314312);pointer-events:none;z-index:1}
+#view-driver .cockpit-window{position:absolute;left:19%;top:9%;width:73%;height:43%;border:0;border-radius:0;background:none;box-shadow:none;z-index:2;overflow:visible;pointer-events:none}
+#view-driver .window-sky,#view-driver .distant-tower,#view-driver .cockpit-frame,#view-driver .pilot{display:none}
+#view-driver .window-reticle{inset:22% 34%;border-color:#d0e5e51b;border-radius:0;clip-path:polygon(0 0,20% 0,20% 2%,2% 2%,2% 20%,0 20%,0 0,100% 0,100% 100%,0 100%);opacity:.7}
+#view-driver .window-tag{top:auto;bottom:4%;left:10%;font-size:9px;color:#c5d4d477;letter-spacing:2px}
+#view-driver .cockpit-topline{position:absolute;left:5%;right:5%;top:3.8%;display:flex;justify-content:space-between;align-items:center;color:#aebdc4;font-size:11px;letter-spacing:2px;z-index:3;text-shadow:0 2px 4px #000}
+#view-driver .cockpit-topline small{font:9px 'Microsoft YaHei',sans-serif;color:#90a6b1;letter-spacing:1px}
+#view-driver .cockpit-meters{position:absolute;left:28%;top:53%;display:flex;gap:20px;z-index:2;opacity:.8}
+#view-driver .cockpit-meters>div{border-left:2px solid #8ca9ac66;padding-left:9px}
+#view-driver .cockpit-meters small,#view-driver .cockpit-meters strong{display:block;font-size:8px;letter-spacing:1px;color:#8aa0ac;font-family:'Microsoft YaHei',sans-serif}
+#view-driver .cockpit-meters strong{font-size:10px;letter-spacing:0;color:#b9c8c9;font-weight:400;margin-top:4px}
+#view-driver .dashboard{left:27%;right:5%;bottom:9%;height:27%;padding:15px 17px 17px;background:linear-gradient(160deg,#5e6c754d,#23313ceb 35%,#111f29ed);border:1px solid #8e9b9f80;border-top:3px solid #9ca8a36e;border-radius:5px;box-shadow:0 12px 17px #0008,inset 0 1px #e9f0ed22;z-index:3}
+#view-driver .dashboard:before,#view-driver .dashboard:after{content:'';position:absolute;top:7px;width:5px;height:5px;border-radius:50%;background:#3a4b54;box-shadow:inset 0 1px 2px #0a1820,0 1px #c2ccc64d}
+#view-driver .dashboard:before{left:6px}#view-driver .dashboard:after{right:6px}
+#view-driver .dashboard-heading{height:20px;margin:0 0 10px;padding:0 2px;border-bottom:1px solid #a8bec32b}
+#view-driver .dashboard-heading small{font:9px 'Microsoft YaHei',sans-serif;color:#b7c5cb;letter-spacing:1px}
+#view-driver .dashboard-heading span{font-size:9px;color:#8fa9b5}
+#view-driver .diagnostic-buttons{height:calc(100% - 30px);gap:10px}
+#view-driver .diagnostic{padding:12px 12px 12px 16px;gap:8px;border-radius:2px;border:1px solid #566a774d;background:repeating-linear-gradient(0deg,#0d1c2700 0px,#0d1c2700 3px,#a3bcc404 4px),linear-gradient(120deg,#273b4680,#111e2a);box-shadow:inset 0 1px #a6bec312,inset 0 0 15px #0004;overflow:hidden;color:#748b97;transition:color .2s,border-color .2s,background .2s}
+#view-driver .diagnostic:before{content:'';position:absolute;left:0;top:17%;bottom:17%;width:3px;background:#526874;box-shadow:none}
+#view-driver .diagnostic small{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:2px;color:inherit;opacity:.85}
+#view-driver .diagnostic strong{font-size:clamp(15px,1.35vw,22px);font-weight:650;letter-spacing:1px;color:inherit}
+#view-driver .instrument-state{display:flex;align-items:center;gap:6px;font:8px 'Microsoft YaHei',sans-serif;letter-spacing:.5px;color:inherit}
+#view-driver .instrument-state:before{content:'';width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.7}
+#view-driver .diagnostic.pending{color:#ffb29b;border-color:#cf725b;background:linear-gradient(120deg,#59362fc7,#2d2428);animation:cockpit-alarm 1.4s ease-in-out infinite}
+#view-driver .diagnostic.pending:before{background:#ec7857;box-shadow:0 0 9px #e66a49a0}
+#view-driver .diagnostic.inspecting{color:#e9c78b;border-color:#c7a36a;background:linear-gradient(120deg,#514936d9,#2a3032)}
+#view-driver .diagnostic.inspecting:before{background:#d7b476;box-shadow:0 0 7px #d0a55d40}
+#view-driver .diagnostic.complete{color:#a5b8b8;background:linear-gradient(120deg,#2f424899,#172833);border-color:#7c94975c}
+#view-driver .diagnostic.complete:before{background:#789a94}
+#view-driver .diagnostic.sweeping:after{background:linear-gradient(125deg,transparent 44%,#ffe5b080 50%,transparent 56%)}
+#view-driver #driver-ready{position:absolute;left:42%;top:32%;right:auto;bottom:auto;width:38%;max-width:420px;transform:translate(-30%,-10%);display:flex;flex-direction:column;gap:12px;padding:20px 25px;background:linear-gradient(130deg,#1d3542ed,#192c36ed);border:1px solid #a1bdc36b;box-shadow:0 15px 40px #0005;z-index:5;animation:window-ready .5s ease-out;pointer-events:auto;text-align:center;backdrop-filter:blur(6px)}
+#view-driver #driver-ready small{font:12px 'Microsoft YaHei',sans-serif;color:#c1d4d2;letter-spacing:1px}
+#view-driver #driver-ready .primary{font:700 12px 'Microsoft YaHei',sans-serif;letter-spacing:1px;border-color:#b4c1a555;background:#76827819;color:#e1e0bd;padding:11px 22px}
+/* Repair-only terminal placement. Other dialogs retain their original positioning. */
+.app[data-view=driver] .panel-layer:has(.panel[data-mode=repair]){place-items:end end;padding:18px 22px}
+.app[data-view=driver] .panel-layer:has(.panel[data-mode=repair])>.panel-scrim{background:linear-gradient(90deg,#07151c14,#0a1c2833);backdrop-filter:none}
+.panel[data-mode=repair]{width:min(680px,63%);padding:23px 25px 19px;border:1px solid #acbbc16b;border-top:2px solid #c6ad7d9e;border-radius:2px;background:linear-gradient(120deg,#344853f5,#172934fa 64%,#1f333ff5);box-shadow:0 20px 55px #0009,inset 0 0 0 5px #0e202b44;clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,14px 100%,0 calc(100% - 14px));transform-origin:85% 100%;animation:terminal-expand .3s cubic-bezier(.15,.75,.3,1) both}
+.panel[data-mode=repair]:before{content:'';position:absolute;inset:6px;border:1px solid #bdd3da20;pointer-events:none;animation:terminal-outline .24s ease-out both}
+.panel[data-mode=repair]:after{content:'系统诊断中';position:absolute;right:53px;top:23px;font:9px 'Microsoft YaHei',sans-serif;color:#d0b987;padding:3px 7px;border:1px solid #b69d7040;background:#89734514}
+.panel[data-mode=repair]:has(.repair-feedback.complete):after{content:'修复完成';color:#e9d6a4;border-color:#b79c6877}
+.panel[data-mode=repair]>small{font:10px 'Microsoft YaHei',sans-serif;letter-spacing:1px;color:#a9bfcc;padding-right:100px;animation:terminal-content .2s .13s both}
+.panel[data-mode=repair]>h2{font-size:25px;font-weight:650;letter-spacing:2px;margin:10px 0 17px;animation:terminal-content .2s .15s both}
+.panel[data-mode=repair] .close{color:#b0c5ce;font-size:23px;right:12px;top:13px;z-index:2}
+.panel[data-mode=repair] .diagnosis{gap:18px;padding-bottom:14px;border-color:#9ab3bc2b}
+.panel[data-mode=repair] .diagnosis section:first-child{animation:terminal-content .24s .21s both}
+.panel[data-mode=repair] .diagnosis section:last-child{animation:terminal-content .24s .27s both}
+.panel[data-mode=repair] .repair-columns{gap:18px;margin-top:14px}
+.panel[data-mode=repair] .repair-columns section:first-child{animation:terminal-content .24s .33s both}
+.panel[data-mode=repair] .repair-columns section:last-child{animation:terminal-content .24s .39s both}
+.panel[data-mode=repair] h3{font-size:12px;line-height:1.4;letter-spacing:1px;margin-bottom:7px;color:#d4e2e6;border-left:2px solid #849da9;padding-left:8px}
+.panel[data-mode=repair] .repair-columns section:first-child h3{color:#dcc496;border-color:#c3a672}
+.panel[data-mode=repair] .repair-columns section:last-child h3{color:#afcbd8;border-color:#88adbd}
+.panel[data-mode=repair] p{font-size:12px;line-height:1.65;color:#b0c4cd}
+.panel[data-mode=repair] .component-list{gap:7px;margin-top:10px}
+.panel[data-mode=repair] .component{padding:9px 10px;border-radius:1px;background:linear-gradient(#233a4580,#122631d9);border-color:#89a6b442;box-shadow:inset 0 1px #c9dce712;min-height:48px}
+.panel[data-mode=repair] .component:hover{border-color:#b2c5cbb0;background:#344a5299}
+.panel[data-mode=repair] .component.installed{border-color:#b1bd9b66;background:#7386751a}
+.panel[data-mode=repair] .component small{font:8px 'Microsoft YaHei',sans-serif;letter-spacing:.5px}
+.panel[data-mode=repair] .component strong{font-size:12px;font-weight:600;letter-spacing:.5px}
+.panel[data-mode=repair] .repair-feedback{font:11px 'Microsoft YaHei',sans-serif;padding-top:10px;margin-top:13px;letter-spacing:.5px;animation:terminal-content .2s .45s both}
+.panel[data-mode=repair] .footnote{font-size:9px;color:#809daa;margin-top:7px;animation:terminal-content .2s .45s both}
+.panel.terminal-retiring{animation:terminal-retract .18s ease-in both!important;transform-origin:80% 100%}
+@keyframes cockpit-alarm{0%,100%{box-shadow:inset 0 0 18px #a64b3520,0 0 0 #bf5d3900}50%{border-color:#fa9f7b;background-color:#773e2f;box-shadow:inset 0 0 24px #db5f3538,0 0 12px #c66b4226;color:#ffd0b9}}
+@keyframes terminal-outline{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes terminal-expand{0%{opacity:.25;clip-path:polygon(0 94%,100% 94%,100% 100%,0 100%);transform:scaleY(.97)}40%{opacity:1}100%{opacity:1;clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,14px 100%,0 calc(100% - 14px));transform:scaleY(1)}}
+@keyframes terminal-content{from{opacity:0;translate:0 4px}to{opacity:1;translate:0 0}}
+@keyframes terminal-retract{to{opacity:0;scale:1 .92;clip-path:inset(88% 0 0 0)}}
+@keyframes window-ready{from{opacity:0;translate:0 7px}to{opacity:1;translate:0 0}}
+@media(max-height:820px){#view-driver .dashboard{height:26%;bottom:9%;padding:12px 13px}#view-driver .dashboard-heading{margin-bottom:8px;height:17px}#view-driver .diagnostic-buttons{height:calc(100% - 25px);gap:8px}#view-driver .diagnostic{padding:9px 8px 9px 13px;gap:7px}#view-driver .diagnostic strong{font-size:17px}#view-driver .diagnostic small{font-size:8px}#view-driver .instrument-state{font-size:8px}#view-driver .dashboard-heading small,#view-driver .dashboard-heading span{font-size:8px}.app[data-view=driver] .panel-layer:has(.panel[data-mode=repair]){padding:13px 16px}.panel[data-mode=repair]{padding:18px 20px 15px;width:min(660px,64%)}.panel[data-mode=repair]>h2{font-size:23px;margin:8px 0 13px}.panel[data-mode=repair]>small{font-size:9px}.panel[data-mode=repair]:after{top:18px;font-size:8px}.panel[data-mode=repair] p{font-size:11px;line-height:1.55}.panel[data-mode=repair] h3{font-size:11px;margin-bottom:6px}.panel[data-mode=repair] .diagnosis{padding-bottom:11px;gap:15px}.panel[data-mode=repair] .repair-columns{margin-top:11px;gap:15px}.panel[data-mode=repair] .component{padding:8px;min-height:43px;gap:5px}.panel[data-mode=repair] .component strong{font-size:11px}.panel[data-mode=repair] .component-list{margin-top:8px}.panel[data-mode=repair] .repair-feedback{margin-top:10px;padding-top:9px}.panel[data-mode=repair] .footnote{font-size:8px;margin-top:6px}}
+@media(max-width:1100px){#view-driver .dashboard{left:23%;right:4%}#view-driver .cockpit-meters{left:26%}#view-driver .diagnostic strong{font-size:15px}.panel[data-mode=repair]{width:72%}#view-driver .cockpit-topline{font-size:9px}.panel[data-mode=repair]>small{padding-right:90px}}
+@media(max-width:700px){#view-driver .cockpit-plate{object-fit:cover;object-position:40% center}#view-driver .dashboard{left:5%;right:5%;bottom:7%;height:28%;padding:10px}#view-driver .dashboard-heading small{font-size:7px}#view-driver .dashboard-heading span{display:none}#view-driver .diagnostic-buttons{gap:5px}#view-driver .diagnostic{padding:8px 5px 8px 9px;gap:7px}#view-driver .diagnostic strong{font-size:12px;letter-spacing:0}#view-driver .diagnostic small,#view-driver .instrument-state{font-size:6px;letter-spacing:0}#view-driver .cockpit-topline small{display:none}#view-driver .cockpit-meters{left:30%;top:55%;gap:9px}#view-driver .cockpit-meters strong{font-size:8px}#view-driver .cockpit-meters small{font-size:6px}.panel[data-mode=repair]{width:100%;padding:16px 14px}.panel[data-mode=repair] p{font-size:10px}.panel[data-mode=repair] .component-list{grid-template-columns:1fr 1fr}.panel[data-mode=repair] .component strong{font-size:10px}.panel[data-mode=repair] .component small{font-size:7px}.panel[data-mode=repair] .diagnosis,.panel[data-mode=repair] .repair-columns{gap:11px}#view-driver #driver-ready{left:12%;top:32%;width:76%;transform:none;padding:15px}#view-driver #driver-ready small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){#view-driver .diagnostic.pending,.panel[data-mode=repair],.panel[data-mode=repair] *,.panel[data-mode=repair]:before,#view-driver #driver-ready{animation:none!important}.panel.terminal-retiring{display:none}}

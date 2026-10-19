@@ -1,0 +1,55 @@
+/* Final polish: overlay alpha changes, not global exposure. */
+#view-cover .cover-veil{background:linear-gradient(90deg,#12212aad 0%,#172630a2 30%,#18293465 63%,#18273244 100%),linear-gradient(0deg,#12222c9b 0%,transparent 38%,#17273212 65%,#12212a36 100%)}
+/* Driver HUD with a smooth, CSS-registered circular progress meter. */
+@property --repair-progress{syntax:'<percentage>';inherits:true;initial-value:0%}
+.panel[data-mode=repair]{width:min(880px,78%);padding:22px 25px 18px;background:linear-gradient(130deg,#425762e8,#152c39f4 55%,#263d49ee);border-top-color:#debd7d;box-shadow:0 20px 65px #0009,inset 0 0 0 5px #86b7c00b,inset 0 1px #dbe8e94d;backdrop-filter:blur(12px)}
+.hud-repair-layout{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center}
+.hud-repair-meter{--repair-progress:0%;position:relative;text-align:center;padding:18px 0;transition:--repair-progress .38s ease-out}
+.hud-repair-meter>small{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:2px;color:#b9cdd3;display:block;margin-bottom:22px}
+.hud-repair-ring{position:relative;width:140px;height:140px;margin:0 auto 22px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:conic-gradient(from -90deg,#e2c88c var(--repair-progress),#48616c70 0);box-shadow:0 0 0 1px #bdd2d244,0 0 23px #a4bdc814,inset 0 0 9px #e0d6aa1f;color:#dce5e4}
+.hud-repair-ring:before{content:'';position:absolute;inset:-9px;border:1px dashed #b8d0d047;border-radius:50%;pointer-events:none}
+.hud-repair-ring:after{content:'';position:absolute;inset:6px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#3e5865,#192e3a 70%);box-shadow:inset 0 0 0 1px #a4babc38,inset 0 0 20px #081c2e99}
+#repair-percentage{font:600 31px Consolas,monospace;color:#e5e0c4;z-index:2;letter-spacing:0}
+#repair-gauge-label{font:9px 'Microsoft YaHei',sans-serif;letter-spacing:1px;color:#a2bdc8;z-index:2}
+.hud-repair-meter.complete .hud-repair-ring{box-shadow:0 0 0 1px #d3bc7f77,0 0 23px #d0ad4930,inset 0 0 10px #e4cc8855}
+.hud-repair-meter.complete #repair-percentage{color:#f2d59c}.hud-repair-meter.complete #repair-gauge-label{color:#dfc893}
+.meter-caption{font-size:8px;color:#7c9eae;letter-spacing:1px}
+.hud-repair-information{min-width:0;border-left:1px solid #aac6ce26;padding-left:21px}
+.panel[data-mode=repair] .hud-repair-information .diagnosis{gap:15px}
+.panel[data-mode=repair] .hud-repair-information .repair-columns{gap:15px}
+.panel[data-mode=repair] .component{cursor:default;min-height:45px;padding:8px 9px;transition:background .28s,border-color .28s,box-shadow .28s;animation:none}
+.panel[data-mode=repair] .component.installed{background:linear-gradient(130deg,#9cb68b30,#638b8538);border-color:#d2dbb8a8;box-shadow:inset 0 1px #e8f0cf33,0 0 13px #b8c59718;filter:brightness(1.3)}
+.panel[data-mode=repair] .component.installed small{color:#e5e6b9}.panel[data-mode=repair] .component.installed strong{color:#ebf0d8}
+.panel[data-mode=repair] .repair-all{display:block;width:calc(100% - 174px);margin:12px 0 0 auto;min-height:42px;font:700 12px 'Microsoft YaHei',sans-serif;letter-spacing:3px;border-color:#c6af7980;background:linear-gradient(120deg,#84774a4d,#304c57a6);color:#ead7ab;animation:terminal-content .2s .45s both}
+.panel[data-mode=repair] .repair-all:hover:not(:disabled){background:linear-gradient(120deg,#a18a4b70,#3f616bac);border-color:#ebd398}
+.panel[data-mode=repair] .repair-all:disabled{opacity:.8;color:#d3d6bd;border-color:#bac19d70}
+.panel[data-mode=repair] .repair-feedback{margin-left:174px}.panel[data-mode=repair] .footnote{text-align:right;animation-delay:.45s}
+.panel[data-mode=repair]:has(.hud-repair-meter.complete){border-top-color:#ffe3a6}
+.panel[data-mode=repair]:has(.hud-repair-meter.complete):before{border-color:#e1c68665;animation:hud-completion-glint .7s ease-out 1 both}
+/* Two overlapping true circular fields create a binocular aperture. */
+.binocular-mask-defs{position:absolute;pointer-events:none}
+#view-scout .lens-housing{width:min(94%,calc((100dvh - 210px) * 1.65));height:auto;aspect-ratio:1.65;top:9%;left:50%;transform:translateX(-50%);border-radius:0;clip-path:url(#binocular-aperture);padding:17px;background:linear-gradient(135deg,#758089,#25343e 16%,#0d1d28 54%,#43545f 87%,#7d8786);filter:drop-shadow(0 15px 15px #0009);box-shadow:inset 0 0 0 2px #99a9ad66,inset 0 3px 4px #d5dddb3d}
+#view-scout .scope-lens{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(100% - 34px);height:auto;aspect-ratio:1.65;clip-path:url(#binocular-aperture);border-radius:0;border:0;box-shadow:inset 0 0 25px #07151d7d;background:#3c4b53}
+#view-scout .scout-target{width:80%;left:10%;top:18%;aspect-ratio:2/1}
+#view-scout .lens-vignette{border-radius:0;box-shadow:none;background:radial-gradient(circle at 30% 50%,transparent 15%,#0e202512 42%,#0610187a 80%)}
+#view-scout .bezel-label{display:none}#view-scout .scope-reading{bottom:14%;font-size:8px}#view-scout .tactical-reticle{opacity:.85}
+/* Exactly twice the prior tower width; tank reduced to 75% of its prior width. */
+#view-fire .fire-tower{right:4%;bottom:10%;width:min(34%,calc((100dvh - 230px) * .64));aspect-ratio:1145/1374}
+#view-fire .fire-tank{left:8%;bottom:8%;width:min(46.5%,calc((100dvh - 235px) * 1.2));aspect-ratio:2/1}
+#view-fire .target-name{top:3%;right:5%;padding:5px 7px;background:#132a3750;text-align:right}
+/* A warmer metallic reward, contained within the existing local card. */
+#view-fire #victory{width:min(550px,78%);padding:31px 36px 28px;border:2px solid #dfc481;border-top-color:#fff0bc;background:radial-gradient(ellipse at 50% 0,#d9b45f38,transparent 68%),radial-gradient(ellipse at 50% 75%,#b3943714,transparent 80%),linear-gradient(135deg,#3b4c55f7,#173043fa 70%);box-shadow:0 0 0 5px #b3974812,0 0 0 6px #b79b4d4d,0 24px 80px #000a,0 0 55px #d8b9502b,inset 0 0 0 5px #d4b76f0c,inset 0 1px #fff5ce7a}
+#view-fire #victory:before{content:'';position:absolute;inset:11px;border:1px solid #dac17d40;pointer-events:none;background:linear-gradient(90deg,#ffeab7,#b79b4d00) left top/64px 1px no-repeat,linear-gradient(#ffeab7,#b79b4d00) left top/1px 44px no-repeat,linear-gradient(270deg,#ffeab7,#b79b4d00) right bottom/64px 1px no-repeat}
+#view-fire .victory-rays{top:4px;width:270px;height:270px;background:repeating-conic-gradient(#e4c77722 0deg 1deg,transparent 1deg 12deg);mask-image:radial-gradient(circle,#000,transparent 72%)}
+#view-fire .victory-rays:after{content:'';position:absolute;left:30%;top:40%;width:2px;height:2px;border-radius:50%;background:#fbe8a7;box-shadow:-72px -30px 0 #dfc47a,83px -44px 0 #e3c97f,64px 53px 0 #f8e5ab,-41px 62px 0 #c7a953,95px 8px 0 #d7ba71,-65px 19px 0 #e3cf91;opacity:.7}
+#view-fire .victory-seal{width:86px;height:86px;font-size:49px;color:#fff0b8;border-color:#f2d58d;background:radial-gradient(circle,#e4be573b,#7a69381c 65%);box-shadow:inset 0 0 17px #d3ad4829,0 0 30px #e2c36d33;outline-color:#e5c97b77;outline-offset:8px;margin-bottom:25px;text-shadow:0 0 16px #f2d58d4d}
+#view-fire #victory h2{background:linear-gradient(105deg,#bca161 5%,#fbe9b9 32%,#fff4d1 45%,#d6b873 65%,#f2dfae 92%);background-size:240% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#f9e1a6;text-shadow:none;animation:reward-title-shine 1.2s ease-out 1 both;letter-spacing:1.5px}
+#view-fire #victory>small{color:#e3ce97;letter-spacing:4px}#view-fire #victory .victory-stamp{color:#f0d99e;border-color:#c8ac63a1;background:#b6973e16;letter-spacing:5px;box-shadow:inset 0 0 0 2px #b6953b10}
+#view-fire #victory .primary{background:linear-gradient(120deg,#a48a4550,#4e5b573d);border-color:#dfc381a3;color:#f0ddb0;box-shadow:inset 0 1px #f6e6b62b}
+@keyframes reward-title-shine{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes hud-completion-glint{0%{box-shadow:inset 0 0 0 #e7c36c00}35%{box-shadow:inset 0 0 30px #e7c36c30}100%{box-shadow:inset 0 0 0 #e7c36c00}}
+@media(max-height:820px){.panel[data-mode=repair]{width:min(860px,78%);padding:18px 21px 15px}.hud-repair-layout{grid-template-columns:133px minmax(0,1fr);gap:19px}.hud-repair-information{padding-left:16px}.hud-repair-ring{width:123px;height:123px}.hud-repair-meter>small{font-size:8px}.hud-repair-ring strong{font-size:28px}.panel[data-mode=repair] .repair-all{width:calc(100% - 152px);min-height:39px;margin-top:10px}.panel[data-mode=repair] .repair-feedback{margin-left:152px}.panel[data-mode=repair] .component{min-height:42px}.hud-repair-meter{padding:12px 0}#view-scout .lens-housing{width:min(94%,calc((100dvh - 210px) * 1.65));height:auto;aspect-ratio:1.65;top:9%}#view-fire #victory{width:min(510px,78%);padding:26px 31px 23px}#view-fire .victory-seal{width:74px;height:74px;font-size:43px;margin-bottom:23px}}
+@media(max-width:1100px){.panel[data-mode=repair]{width:88%}.hud-repair-layout{grid-template-columns:112px minmax(0,1fr);gap:16px}.hud-repair-ring{width:106px;height:106px}.hud-repair-meter>small{letter-spacing:0;font-size:8px}#repair-percentage{font-size:25px}#repair-gauge-label{font-size:8px;letter-spacing:0}.panel[data-mode=repair] .repair-all{width:calc(100% - 128px)}.panel[data-mode=repair] .repair-feedback{margin-left:128px}#view-scout .lens-housing{width:min(96%,calc((100dvh - 210px) * 1.65));height:auto;aspect-ratio:1.65}}
+@media(max-width:700px){.panel[data-mode=repair]{width:100%;padding:16px 13px}.hud-repair-layout{grid-template-columns:minmax(0,1fr);gap:13px}.hud-repair-meter{padding:0;display:grid;grid-template-columns:1fr 80px;align-items:center;text-align:left}.hud-repair-meter>small{margin:0;font-size:9px}.hud-repair-ring{grid-column:2;grid-row:1/3;width:70px;height:70px;margin:0 7px}.hud-repair-ring:before{inset:-5px}#repair-percentage{font-size:18px}#repair-gauge-label{font-size:6px}.hud-repair-ring{gap:4px}.meter-caption{font-size:7px}.hud-repair-information{padding-left:0;border-left:none;border-top:1px solid #a8c7d329;padding-top:12px}.panel[data-mode=repair] .repair-all{width:100%}.panel[data-mode=repair] .repair-feedback{margin-left:0}.panel[data-mode=repair] .component{min-height:36px;padding:6px}.panel[data-mode=repair] .component strong{font-size:10px}.panel[data-mode=repair] .footnote{font-size:7px}#view-scout .lens-housing{width:125%;height:auto;aspect-ratio:1.65;top:21%;padding:11px}#view-scout .scout-target{width:80%;left:10%;top:18%}#view-scout .scope-reading{font-size:6px;letter-spacing:0;bottom:15%}#view-fire .fire-tower{right:4%;bottom:23%;width:33%}#view-fire .fire-tank{left:3%;bottom:12%;width:54%}#view-fire #victory{width:91%;padding:24px 20px}}
+@media(max-width:700px){#view-scout .scope-lens{width:calc(100% - 22px);height:auto;aspect-ratio:1.65}}
+@media(prefers-reduced-motion:reduce){.hud-repair-meter{transition:none}.panel[data-mode=repair] .component{transition:none}#view-fire #victory h2{animation:none!important}}
